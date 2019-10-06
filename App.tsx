@@ -26,10 +26,22 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
+
+
+const client = new ApolloClient({
+  link: new HttpLink({
+    uri: 'https://dobare.herokuapp.com/api',
+    headers: {}
+  }),
+  cache: new InMemoryCache()
+})
+
 const App = () => {
   const usingHermes = typeof HermesInternal === 'object' && HermesInternal !== null;
   return (
-    <>
+    <ApolloProvider client={client}>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <ScrollView
@@ -71,7 +83,7 @@ const App = () => {
           </View>
         </ScrollView>
       </SafeAreaView>
-    </>
+    </ApolloProvider>
   );
 };
 
