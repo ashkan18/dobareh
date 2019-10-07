@@ -9,80 +9,54 @@
  */
 
 import React from 'react';
+
 import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
-  View,
-  Text,
   StatusBar,
 } from 'react-native';
 
 import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
+  Colors
 } from 'react-native/Libraries/NewAppScreen';
 
 import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider as ApolloProviderHooks } from '@apollo/react-hooks'
+import { Search } from './src/pages/search';
+import { Theme } from "@artsy/palette"
+// import { createGlobalStyle } from 'styled-components';
 
+
+// const GlobalStyles = createGlobalStyle`
+//   @import url("https://webfonts.artsy.net/all-webfonts.css");
+// `
 
 const client = new ApolloClient({
   link: new HttpLink({
-    uri: 'https://dobare.herokuapp.com/api',
-    headers: {}
+    uri: 'https://dobar.herokuapp.com/api',
   }),
   cache: new InMemoryCache()
 })
 
 const App = () => {
-  const usingHermes = typeof HermesInternal === 'object' && HermesInternal !== null;
   return (
     <ApolloProvider client={client}>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {!usingHermes ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
+      <ApolloProviderHooks client={client}>
+        <Theme>
+          <>
+            <StatusBar barStyle="dark-content" />
+            <SafeAreaView>
+              <ScrollView
+                contentInsetAdjustmentBehavior="automatic"
+                style={styles.scrollView}>
+                <Search/>
+              </ScrollView>
+            </SafeAreaView>
+          </>
+        </Theme>
+      </ApolloProviderHooks>
     </ApolloProvider>
   );
 };
