@@ -28,7 +28,7 @@ const FIND_PLACES = gql`
   }
 `
 export const Search = (props: any) => {
-  const [where, setWhere] = useState({lat: 40.7188725, lng: -74.0047466})
+  const [where, setWhere] = useState({lat: 40.689786, lng: -73.9748801})
   const [search, { called, loading, error, data }] = useLazyQuery(FIND_PLACES)
   const onSubmit = () => {
     search({variables: {location: where}})
