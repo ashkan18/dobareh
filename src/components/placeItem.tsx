@@ -11,7 +11,7 @@ interface Props {
 export const PlaceItem = (props: Props) => {
   const {place} = props
   return(
-    <BorderBox>
+    <BorderBox justifyContent={"center"}>
       {place.images && place.images.length > 0 &&
         <Image source={{uri: randomPhoto(place.images).urls.thumb}} style={{width: 100, height: 100}}/>
       }
