@@ -1,4 +1,5 @@
 PODS:
+  - "Artsy+UIFonts (3.3.3)"
   - boost-for-react-native (1.63.0)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.61.2)
@@ -217,11 +218,14 @@ PODS:
     - React-cxxreact (= 0.61.2)
     - React-jsi (= 0.61.2)
     - ReactCommon/jscallinvoker (= 0.61.2)
+  - RNGestureHandler (1.4.1):
+    - React
   - RNSVG (9.11.1):
     - React
   - Yoga (1.14.0)
 
 DEPENDENCIES:
+  - "Artsy+UIFonts"
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
@@ -249,10 +253,13 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/jscallinvoker (from `../node_modules/react-native/ReactCommon`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
+  https://github.com/artsy/Specs.git:
+    - "Artsy+UIFonts"
   trunk:
     - boost-for-react-native
 
@@ -305,12 +312,15 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/Vibration"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
   RNSVG:
     :path: "../node_modules/react-native-svg"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
+  "Artsy+UIFonts": 597c44f264aead6bdc21898b690addd90e14edbd
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
   FBLazyVector: 68b6a76960fbd8ecd9fb7ce0aadd3329c3340a99
@@ -336,9 +346,10 @@ SPEC CHECKSUMS:
   React-RCTText: e3ef6191cdb627855ff7fe8fa0c1e14094967fb8
   React-RCTVibration: fb54c732fd20405a76598e431aa2f8c2bf527de9
   ReactCommon: 5848032ed2f274fcb40f6b9ec24067787c42d479
+  RNGestureHandler: 4cb47a93019c1a201df2644413a0a1569a51c8aa
   RNSVG: be27aa7c58819f97399388ae53d7fa0572f32c7f
   Yoga: 14927e37bd25376d216b150ab2a561773d57911f
 
-PODFILE CHECKSUM: 9f21cc52ac0bce80c9080b0152989f5c894a115f
+PODFILE CHECKSUM: 6b6637f28175d7ec09dfca03c037075c776d176a
 
 COCOAPODS: 1.8.3

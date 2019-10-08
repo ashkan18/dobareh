@@ -1,21 +1,25 @@
 import React from 'react';
 import { BorderBox, Sans } from "@artsy/palette"
 import { randomPhoto } from '../util';
-import { Image } from "react-native"
+import { Image, TouchableOpacity } from "react-native"
 
 
 interface Props {
-  place: any
+  place: any,
+  navigation: any
 }
 
 export const PlaceItem = (props: Props) => {
   const {place} = props
+  const {navigate} = props.navigation;
   return(
-    <BorderBox justifyContent={"center"}>
-      {place.images && place.images.length > 0 &&
-        <Image source={{uri: randomPhoto(place.images).urls.thumb}} style={{width: 100, height: 100}}/>
-      }
-      <Sans size="4">{place.name}</Sans>
-    </BorderBox>
+    <TouchableOpacity onPress={() => navigate('PlaceDetail', {id: place.id})}>
+      <BorderBox justifyContent={"center"}>
+        {place.images && place.images.length > 0 &&
+          <Image source={{uri: randomPhoto(place.images).urls.thumb}} style={{width: 100, height: 100}}/>
+        }
+        <Sans size="4">{place.name}</Sans>
+      </BorderBox>
+    </TouchableOpacity>
   )
 }
