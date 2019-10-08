@@ -1,10 +1,11 @@
 import React from 'react';
 
 
-import { SafeAreaView, StyleSheet, ActivityIndicator} from "react-native";
+import { SafeAreaView, StyleSheet, ActivityIndicator, Image} from "react-native";
 import { Flex, Sans } from "@artsy/palette"
 import { useQuery } from "@apollo/react-hooks"
 import gql from "graphql-tag"
+import { randomPhoto } from '../util';
 
 
 interface Props {
@@ -57,6 +58,9 @@ export const PlaceDetail = (props: Props) => {
     return (
       <SafeAreaView>
         <Flex flexDirection="column">
+          {place.images && place.images.length > 0 &&
+            <Image source={{uri: randomPhoto(place.images).urls.thumb}} style={{width: 100, height: 100}}/>
+          }
           <Sans size={4}>{place.name}</Sans>
         </Flex>
       </SafeAreaView>
