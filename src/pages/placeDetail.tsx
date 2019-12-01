@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-import { SafeAreaView, StyleSheet, ActivityIndicator, Image} from "react-native";
+import { SafeAreaView, StyleSheet, ActivityIndicator, Image, ScrollView} from "react-native";
 import { Flex, Sans } from "@artsy/palette"
 import { useQuery } from "@apollo/react-hooks"
 import gql from "graphql-tag"
@@ -56,14 +56,15 @@ export const PlaceDetail = (props: Props) => {
   if (data && data.place) {
     const {place} = data
     return (
-      <SafeAreaView>
-        <Flex flexDirection="column">
+      <Flex flexDirection="column" justifyContent="center">
+        <Sans size={8} textAlign="center" m={0.5}>{place.name}</Sans>
+        <Sans size={2} textAlign="center">{place.tags.join(",")}</Sans>
+        <ScrollView>
           {place.images && place.images.length > 0 &&
-            <Image source={{uri: randomPhoto(place.images).urls.thumb}} style={{width: 100, height: 100}}/>
+            place.images.map( i => <Image source={{uri: i.urls.thumb}} style={{width: 200, height: 200, margin: 5}}/>)
           }
-          <Sans size={4}>{place.name}</Sans>
-        </Flex>
-      </SafeAreaView>
+        </ScrollView>
+      </Flex>
     )
   }
 }

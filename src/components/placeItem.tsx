@@ -14,11 +14,11 @@ export const PlaceItem = (props: Props) => {
   const {navigate} = props.navigation;
   return(
     <TouchableOpacity onPress={() => navigate('PlaceDetail', {id: place.id})}>
-      <BorderBox justifyContent={"center"}>
+      <BorderBox justifyContent={"space-around"}>
+        <Sans size="4">{place.name}</Sans>
         {place.images && place.images.length > 0 &&
           <Image source={{uri: randomPhoto(place.images).urls.thumb}} style={{width: 100, height: 100}}/>
         }
-        <Sans size="4">{place.name}</Sans>
       </BorderBox>
     </TouchableOpacity>
   )
