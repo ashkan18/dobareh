@@ -64,6 +64,7 @@ export const PlaceDetail = (props: Props) => {
             place.images.map( i => <Image source={{uri: i.urls.thumb}} style={{width: 200, height: 200, margin: 5}}/>)
           }
         </ScrollView>
+        <SocialActions place={place} me={meData && meData.me}/>
       </Flex>
     )
   }
