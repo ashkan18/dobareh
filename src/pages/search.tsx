@@ -35,10 +35,11 @@ interface Props {
 export const Search = (props: Props) => {
   const {navigation} = props
   const [where, setWhere] = useState({lat: 40.689786, lng: -73.9748801})
+  const [what, setWhat] = useState("")
   const [address, setAddress] = useState()
   const [search, { called, loading, error, data }] = useLazyQuery(FIND_PLACES)
   const onSubmit = () => {
-    search({variables: {location: where}})
+    search({variables: {location: where, term: what}})
   }
   if (loading) {
     return(
@@ -49,14 +50,24 @@ export const Search = (props: Props) => {
     <SafeAreaView>
       <Flex flexDirection="column">
         <Flex flexDirection="row" style={{border: "2px"}}>
-          <TextInput style={{height: 20, flexGrow: 1}} placeholder="Where" value={address} onChangeText={ (text) => setAddress(text) }/>
-          <Button size="small" onPress={() => onSubmit() }>Search</Button>
+          <TextInput style={{height: 20, flexGrow: 1}} placeholder="Where" value={address} onChangeText={ (text) => setWhat(text) }/>
+          <Button onPress={() => onSubmit() }>Search</Button>
         </Flex>
         { called && !loading && data && <FlatList data={data.places.edges.map( e => e.node)} renderItem={({item}) => <PlaceItem place={item} navigation={navigation}/>} />}
       </Flex>
     </SafeAreaView>
   )
 }
+
+Search.navigationOptions = (props: Props) => ({
+  title: 'Dobareh',
+  headerLeft: () => (
+    <Button
+      onPress={() => alert('This is a button!')}
+      size="small"
+    > Test </Button>
+  ),
+})
 
 
 const styles = StyleSheet.create({

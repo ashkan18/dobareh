@@ -1,11 +1,11 @@
 import React from 'react';
 
 
-import { SafeAreaView, StyleSheet, ActivityIndicator, Image, ScrollView} from "react-native";
+import { StyleSheet, ActivityIndicator, Image, ScrollView} from "react-native";
 import { Flex, Sans } from "@artsy/palette"
 import { useQuery } from "@apollo/react-hooks"
 import gql from "graphql-tag"
-import { randomPhoto } from '../util';
+import { SocialActions } from '../components/socialActions';
 
 
 interface Props {
@@ -44,10 +44,19 @@ const FIND_PLACE_QUERY = gql`
   }
 `
 
+const ME_QUERY = gql`
+  query {
+    me {
+      name
+    }
+  }
+`
+
 export const PlaceDetail = (props: Props) => {
   const {navigation} = props
   const id = navigation.getParam("id")
   const {loading, data} = useQuery(FIND_PLACE_QUERY, {variables: {id: id}})
+  const {data: meData} = useQuery(ME_QUERY)
   if (loading) {
     return(
       <ActivityIndicator size="large" style={styles.spinner}/>

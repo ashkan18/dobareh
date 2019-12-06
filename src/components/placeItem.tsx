@@ -1,5 +1,5 @@
 import React from 'react';
-import { BorderBox, Sans } from "@artsy/palette"
+import { BorderBox, Sans, EntityHeader } from "@artsy/palette"
 import { randomPhoto } from '../util';
 import { Image, TouchableOpacity } from "react-native"
 
